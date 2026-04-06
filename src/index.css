@@ -1,0 +1,137 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html, body {
+  height: 100%;
+  font-family: 'Inter', system-ui, -apple-system, sans-serif;
+  /* Prevent text selection flash on touch double-tap */
+  -webkit-tap-highlight-color: transparent;
+}
+
+/* Prevent callout on long-press for interactive elements */
+button, a, input, select {
+  touch-action: manipulation;
+  -webkit-tap-highlight-color: transparent;
+}
+
+/* Touch-friendly tap targets (44px min per Apple HIG / WCAG) */
+.touch-target {
+  min-height: 44px;
+  min-width: 44px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+#root {
+  height: 100%;
+}
+
+.bg-sim-bg {
+  background-color: #0f1419;
+}
+
+.bg-sim-panel {
+  background-color: #1a1f2e;
+}
+
+/* Scrollbar styling */
+::-webkit-scrollbar {
+  width: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: #1a1f2e;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #374151;
+  border-radius: 3px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #4b5563;
+}
+
+/* Vital sign pulse animation */
+@keyframes pulse-vital {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.7; }
+}
+
+.animate-vital-pulse {
+  animation: pulse-vital 1s ease-in-out infinite;
+}
+
+/* Generic pulse keyframe (used by Tailwind animate-pulse and custom components) */
+@keyframes pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.5; }
+}
+
+/* Avatar body animations for SedationGauge */
+@keyframes heartbeat {
+  0%, 70%, 100% { transform: scale(1); }
+  10% { transform: scale(1.15); }
+  30% { transform: scale(1.05); }
+}
+
+@keyframes breathe {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.08); }
+}
+
+
+/* Petal pulse animation for active drugs */
+@keyframes petalPulse {
+  0%, 100% { opacity: 0.35; }
+  50% { opacity: 0.5; }
+}
+
+/* Blink animation for crisis alerts */
+@keyframes blink {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.3; }
+}
+
+/* Glow animation for neon effects */
+@keyframes glowPulse {
+  0%, 100% { filter: drop-shadow(0 0 3px currentColor); }
+  50% { filter: drop-shadow(0 0 8px currentColor); }
+}
+
+/* ── Accessibility: focus indicators ──────────────────────────── */
+
+/* Keyboard-only focus ring — visible on Tab but not on click */
+:focus-visible {
+  outline: 2px solid #60a5fa;
+  outline-offset: 2px;
+  border-radius: 2px;
+}
+
+/* Skip-to-main-content link */
+.skip-link {
+  position: absolute;
+  top: -100%;
+  left: 0;
+  z-index: 9999;
+  padding: 0.5rem 1rem;
+  background: #1d4ed8;
+  color: #ffffff;
+  font-size: 0.875rem;
+  font-weight: 600;
+  text-decoration: none;
+  border-bottom-right-radius: 4px;
+}
+.skip-link:focus-visible {
+  top: 0;
+  outline: 2px solid #93c5fd;
+  outline-offset: 2px;
+}
